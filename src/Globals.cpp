@@ -29,7 +29,8 @@ float tmpFloats[2], flowMeterConfig[2], rsvrVol, currentRsvrVol, topOffAmount, m
 int tmpInts[6], Key, minPPM, maxPPM, phDelay, pumpCalibration;
 
 File tmpFile;
-LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+//LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
 DS3231  rtc(SDA, SCL);
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMOFLEDS, LEDPIN, NEO_GRB + NEO_KHZ800);
 

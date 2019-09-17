@@ -6,7 +6,8 @@
 */
 #include <Wire.h>    //Include the software serial library for white sheild
 #include <Adafruit_NeoPixel.h>
-#include <LiquidCrystal.h> //lib for interfacing with LCD screen
+#include <LiquidCrystal_I2C.h>
+//#include <LiquidCrystal.h> //lib for interfacing with LCD screen
 #include <SPI.h> //Suppoting lib for SD card
 #include <SD.h> //SD card API
 #include <StandardCplusplus.h> //STD
@@ -31,7 +32,10 @@ void setup()
 {
 	lcd.createChar(0, upArrow);
 	lcd.createChar(1, downArrow);
-	lcd.begin(16, 2);
+	lcd.begin();
+	// Turn on the blacklight and print a message.
+	lcd.backlight();
+	//lcd.begin(16, 2);
 	pixels.begin(); // This initializes the NeoPixel library.
 	pixels.setBrightness(128);
 	pixels.show();
