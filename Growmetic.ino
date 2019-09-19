@@ -38,11 +38,11 @@ void setup()
 	lcd.begin();
 	// Turn on the blacklight and print a message.
 	lcd.backlight();
-  lcd.print(F("....STARTING.... "));
-  lcd.setCursor(0, 1);
-  lcd.print(F("..GROWMETIC OS.."));
-  delay(3000);
-  lcd.clear();
+  	lcd.print(F("=GROW-metic OS="));
+  	lcd.setCursor(0, 1);
+  	lcd.print(F("....Booting...."));
+  	delay(3000);
+  	lcd.clear();
 	//lcd.begin(16, 2);
 	pixels.begin(); // This initializes the NeoPixel library.
 	pixels.setBrightness(128);
