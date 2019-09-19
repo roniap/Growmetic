@@ -33,6 +33,7 @@
 //OS main setup
 void setup()
 {
+	//developing for real
 	lcd.createChar(0, upArrow);
 	lcd.createChar(1, downArrow);
 	lcd.begin();
