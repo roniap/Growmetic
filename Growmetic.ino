@@ -150,8 +150,6 @@ void loop()
 		}
 	}
 
-
-
 	//60 seconds has passed - Check logic for action
 	if (previousMinute != rtc.getTime().min) {
 		checkTimers();
