@@ -105,7 +105,7 @@ void screenMatrix(){
 			cursorX = backFrontFront;
 		}
 		for (int i = 0; i < row0Size; i++){ //top columns
-			if (cursorX < matrix.front()[i].front() && cursorX > matrix.front()[i - 1].back() && Key == 408 && cursorY == 0){
+			if (cursorX < matrix.front()[i].front() && cursorX > matrix.front()[i - 1].back() && Key == 505 && cursorY == 0){
 				cursorX = matrix.front()[i - 1].back();
 			}
 			if (cursorX > matrix.front()[i].back() && cursorX < matrix.front()[i + 1].front() && Key == 0 && cursorY == 0){
@@ -123,7 +123,7 @@ void screenMatrix(){
 			cursorX = frontFrontFront;
 		}
 		for (int i = 0; i < row1Size; i++){ //top columns
-			if (cursorX < matrix.back()[i].front() && cursorX > matrix.back()[i - 1].back() && Key == 408 && cursorY == 1){
+			if (cursorX < matrix.back()[i].front() && cursorX > matrix.back()[i - 1].back() && Key == 505 && cursorY == 1){
 				cursorX = matrix.back()[i - 1].back();
 			}
 			if (cursorX > matrix.back()[i].back() && cursorX < matrix.back()[i + 1].front() && Key == 0 && cursorY == 1){

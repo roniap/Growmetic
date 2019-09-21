@@ -107,6 +107,7 @@ void setup()
 		Serial.begin(9600);
 		Wire.begin();   // enable i2c ports.
 		coreInit();		//Loads or Creates Crops
+		Serial.println("OS Starting...");
 	}
 }
 
@@ -121,8 +122,8 @@ void loop()
 		Serial.println(screenName);
 		Serial.print("cordY =");
 		Serial.println(cursorY);
-    Serial.print("cordX =");
-    Serial.println(cursorX);
+    	Serial.print("cordX =");
+    	Serial.println(cursorX);
 	}
 	//Reset home screen and menu timers to current miliseconds after any interaction with LCD keys
 	if (Key >= 0 && Key <= 750){
