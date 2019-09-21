@@ -13,8 +13,7 @@
 #include <SD.h> //SD card API
 #include <StandardCplusplus.h> //STD
 #include <vector> //Vectors
-#include <LiquidCrystal_I2C.h>
-//#include <LiquidCrystal.h> //lib for interfacing with LCD screen
+#include <LiquidCrystal.h>
 #include <DS3231.h> //Real time clock lib
 #include <Adafruit_NeoPixel.h> //LED lib
 
@@ -67,7 +66,7 @@
 
 using namespace std; //Prefence of developer, I don't like typing std:: everywhere.
 
-extern LiquidCrystal_I2C lcd;
+extern LiquidCrystal lcd;
 extern DS3231  rtc;
 extern Adafruit_NeoPixel pixels;
 

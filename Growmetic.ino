@@ -9,8 +9,7 @@
 */
 #include <Wire.h>    //Include the software serial library for white sheild
 #include <Adafruit_NeoPixel.h>
-#include <LiquidCrystal_I2C.h>
-//#include <LiquidCrystal.h> //lib for interfacing with LCD screen
+#include <LiquidCrystal.h> //lib for interfacing with LCD screen
 #include <SPI.h> //Suppoting lib for SD card
 #include <SD.h> //SD card API
 #include <StandardCplusplus.h> //STD
@@ -33,12 +32,10 @@
 //OS main setup
 void setup()
 {
-	//developing for real
+
 	lcd.createChar(0, upArrow);
-	lcd.createChar(1, downArrow);
-	lcd.begin();
-	// Turn on the blacklight and print a message.
-	lcd.backlight();
+	lcd.createChar(1, downArrow);	//developing for real
+	lcd.begin(16,2);	// Turn on the blacklight and print a message.
   	lcd.print(F("=GROW-metic OS="));
   	lcd.setCursor(0, 1);
   	lcd.print(F("....Booting...."));
@@ -116,10 +113,10 @@ void setup()
 //Our runtime loop function
 void loop()
 {
-	Key = analogRead(0);
+	Key = analogRead(A0);
 	
 	//Reset home screen and menu timers to current miliseconds after any interaction with LCD keys
-	if (Key >= 0 && Key <= 650){
+	if (Key >= 0 && Key <= 750){
 		homeMillis = menuMillis = millis();
 	}
 	//If no menu interactions have happened after 10 seconds
@@ -158,7 +155,7 @@ void loop()
 	}
 
 	//UI Menus
-	if (Key == 0 || Key == 408){
+	if (Key == 0 || Key == 516){
 		//Left & Right
 		if (screenName == "DATETIME"){
 			matrix = {
@@ -317,7 +314,7 @@ void loop()
 		}
 
 		cursorX = (Key == 0) ? cursorX + 1 : cursorX - 1;
-		if (Key == 408 && screenName == ""){
+		if (Key == 515 && screenName == ""){
 			menusHistory.pop_back();
 			menuIndex = 0;
 			tmpFile = SD.open("dromatic/" + cropName + "/" + getMenuHistory());
@@ -327,14 +324,14 @@ void loop()
 			printScreenNames(menus.front());
 			printScrollArrows();
 		}
-		if (Key == 0 || Key == 408 && screenName != ""){
+		if (Key == 0 || Key == 515 && screenName != ""){
 			screenMatrix();
 		}
 		delay(250);
 	}
-	if (Key == 99 || Key == 255) {
+	if (Key == 145 || Key == 345) {
 		//Up & Down
-		int dir = (Key == 99) ? 1 : -1;
+		int dir = (Key == 145) ? 1 : -1;
 		if (screenName == "DATETIME"){
 			if (cursorY == 0){
 				printDateTime(dir);
@@ -456,7 +453,7 @@ void loop()
 		}
 		delay(250);
 	}
-	if (Key == 639) {
+	if (Key == 749) {
 		//Select
 		if (screenName == ""){
 			lcd.clear();
