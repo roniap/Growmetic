@@ -104,7 +104,7 @@ void setup()
 		pinMode(RELAY16, OUTPUT);	//High voltage power receptical 4
 		digitalWrite(RELAY16, HIGH);
 
-		//Serial.begin(9600);
+		Serial.begin(9600);
 		Wire.begin();   // enable i2c ports.
 		coreInit();		//Loads or Creates Crops
 	}
@@ -114,7 +114,16 @@ void setup()
 void loop()
 {
 	Key = analogRead(A0);
-	
+	if(Key<1000){
+		Serial.print("KEY= ");
+		Serial.println(Key);
+		Serial.print("screenName =");
+		Serial.println(screenName);
+		Serial.print("cordY =");
+		Serial.println(cursorY);
+    Serial.print("cordX =");
+    Serial.println(cursorX);
+	}
 	//Reset home screen and menu timers to current miliseconds after any interaction with LCD keys
 	if (Key >= 0 && Key <= 750){
 		homeMillis = menuMillis = millis();
@@ -155,8 +164,10 @@ void loop()
 	}
 
 	//UI Menus
-	if (Key == 0 || Key == 516){
-		//Left & Right
+	if (Key == 0 || Key == 505){
+		//Left & Right`
+		Serial.println("Left & Right");
+
 		if (screenName == "DATETIME"){
 			matrix = {
 				{ { 1, 1 }, { 4, 4 }, { 10, 10 }, { 13, 13 } },
@@ -314,7 +325,7 @@ void loop()
 		}
 
 		cursorX = (Key == 0) ? cursorX + 1 : cursorX - 1;
-		if (Key == 515 && screenName == ""){
+		if (Key == 505 && screenName == ""){
 			menusHistory.pop_back();
 			menuIndex = 0;
 			tmpFile = SD.open("dromatic/" + cropName + "/" + getMenuHistory());
@@ -324,20 +335,23 @@ void loop()
 			printScreenNames(menus.front());
 			printScrollArrows();
 		}
-		if (Key == 0 || Key == 515 && screenName != ""){
+		if (Key == 0 || Key == 505 && screenName != ""){
 			screenMatrix();
 		}
 		delay(250);
 	}
-	if (Key == 145 || Key == 345) {
+	if (Key == 143 || Key == 328) {
 		//Up & Down
-		int dir = (Key == 145) ? 1 : -1;
+		Serial.println("Up & Down");
+		int dir = (Key == 143) ? 1 : -1;
 		if (screenName == "DATETIME"){
 			if (cursorY == 0){
 				printDateTime(dir);
 			} else if (cursorX == 1){
 				printDateTime(dir);
-			}
+			} else if (cursorY == 1){
+        printDateTime(dir);
+      }
 		}
 		if (screenName == "NEW"){
 			cropRename(dir);
@@ -453,8 +467,9 @@ void loop()
 		}
 		delay(250);
 	}
-	if (Key == 749) {
+	if (Key == 742) {
 		//Select
+		Serial.println("Select");
 		if (screenName == ""){
 			lcd.clear();
 			tmpFile = SD.open("dromatic/" + cropName + "/" + getMenuHistory() + "/" + menus[menuIndex]);

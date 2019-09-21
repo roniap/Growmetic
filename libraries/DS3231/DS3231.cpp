@@ -51,7 +51,7 @@ static const uint8_t dim[] = { 31,28,31,30,31,30,31,31,30,31,30,31 };
 
 Time::Time()
 {
-	this->year = 2014;
+	this->year = 2016;
 	this->mon  = 1;
 	this->date = 1;
 	this->hour = 0;

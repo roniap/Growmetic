@@ -44,9 +44,13 @@ void captureSessionDateTime(){
 //Prints
 void printDateTime(int dir = 0){
 	if (dir != 0){
+		Serial.print("dir= ");
+		Serial.println(dir);
 		int maxDaysInMonth = days[tmpInts[1]];
 		if (cursorY == 0){
 			if (cursorX == 10){
+				//Serial.print(tmpInts[1]);
+				//Serial.println("Moth");
 				//Month
 				(dir == 1) ? (tmpInts[1] = (tmpInts[1] + 1 > 11) ? 0 : tmpInts[1] + 1) : (tmpInts[1] = (tmpInts[1] - 1 < 0) ? 11 : tmpInts[1] - 1);
 				tmpInts[2] = 1;
@@ -65,7 +69,9 @@ void printDateTime(int dir = 0){
 			}
 		}
 		else{
-			if (cursorX == 3){
+			 if (cursorX == 3){
+				//Serial.print(tmpInts[0]);
+				//Serial.println("Year");
 				//Year
 				tmpInts[0] = (dir == 1) ? tmpInts[0] + 1 : tmpInts[0] - 1;
 			}
@@ -89,6 +95,7 @@ void saveDateTime(){
 		rtc.setTime(tmpInts[4], tmpInts[5], 0);
 		//day, month (RTC counts first month as 1, not 0), year
 		rtc.setDate(tmpInts[2], tmpInts[1] + 1, tmpInts[0]);
+		//rtc.setDate(tmpInts[2], tmpInts[1] + 1, tmpInts[0]);
 		rtc.setDOW(calcDayOfWeek(tmpInts[0], tmpInts[1], tmpInts[2]));
 	}
 	if (cursorX == 6 || cursorX == 13 && cursorY == 1){
